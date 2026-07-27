@@ -10,7 +10,7 @@ import React, { useState } from 'react'
 
 const SidebarT = () => {
     const [showProjects, setShowProjects] = useState(true)
-    const [showPriorities, setPriorities] = useState(true)
+    const [showPriority, setShowPriority] = useState(true)
 
     const dispatch = useAppDispatch();
     const isSidebarCollapsed = useAppSelector(
@@ -64,6 +64,8 @@ const SidebarT = () => {
                 <SidebarLink icon={Users} label="Team" href="/teams" />
             </nav>
 
+
+            {/* PROJECTS LINKS */}    
             <button onClick={() => setShowProjects((prev) => !prev)} 
                 className="flex w-full items-center justify-between px-8 py-3 text-gray-500">
                     <span className="">Projects</span>
@@ -73,6 +75,19 @@ const SidebarT = () => {
                         <ChevronDown className="h-5 w-5" />
                     )}
                 </button>
+                {/* PROJECTS LIST */}
+                
+                {/* PRIOROTIES LINKS */}
+                <button onClick={() => setShowPriority((prev) => !prev)} 
+                className="flex w-full items-center justify-between px-8 py-3 text-gray-500">
+                    <span className="">Priority</span>
+                    {showPriority ? (
+                        <ChevronUp className="h-5 w-5" />
+                    ) : (
+                        <ChevronDown className="h-5 w-5" />
+                    )}
+                </button>
+                
         </div>
     </div>
     )
