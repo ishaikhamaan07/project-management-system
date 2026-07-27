@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/state";
-import { Home, LockIcon, LucideIcon, X } from "lucide-react";
+import { Briefcase, Home, LockIcon, LucideIcon, Search, Settings, User, Users, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -57,6 +57,11 @@ const SidebarT = () => {
             {/* NAVBAR LINKS */}
             <nav className="z-10 w-full">
                 <SidebarLink icon={Home} label="Home" href="/" />
+                <SidebarLink icon={Briefcase} label="Timeline" href="/timeline" />
+                <SidebarLink icon={Search} label="Search" href="/search" />
+                <SidebarLink icon={Settings} label="Settings" href="/settings" />
+                <SidebarLink icon={User} label="Users" href="/users" />
+                <SidebarLink icon={Users} label="Team" href="/teams" />
             </nav>
         </div>
     </div>
@@ -67,31 +72,19 @@ interface SidebarLinksProps {
     href: string;
     icon: LucideIcon;
     label: string;
-    // isCollapsed: boolean;
-
 }
 
-const SidebarLink = ({
-    href,
-    icon: Icon,
-    label,
-    // isCollapsed
-}: SidebarLinksProps) => {
+const SidebarLink = ({ href, icon: Icon, label,}: SidebarLinksProps) => {
     const pathname = usePathname()
-    const isActive = pathname === href || (pathname=== "/" && href === "/dashboard");
-    const screenWidth = window.innerWidth;
-
-    const dispatch = useAppDispatch();
-    const isSidebarCollapsed = useAppSelector(
-        (state) => state.global.isSidebarCollapsed,
-    );
+    const isActive = 
+        pathname === href || (pathname=== "/" && href === "/dashboard");
 
     return (
         <Link href={href} className="w-full">
             <div 
                 className={`relative flex cursor-pointer items-center gap-3 transition-colors hover:bg-gray-100 dark:bg-black dark:hover:bg-gray-700 ${
                     isActive ? "bg-gray-100 text-white dark:bg-gray-600" : ""
-                }`}
+                } justify-start px-8 py-3`}
             >
                 {isActive && (
                     <div className="absolute left-0 top-0 h-[100%] w-[5px] bg-blue-200" />
