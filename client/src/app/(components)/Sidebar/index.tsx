@@ -2,14 +2,14 @@
 
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/state";
-import { Briefcase, Home, LockIcon, LucideIcon, Search, Settings, User, Users, X } from "lucide-react";
+import { Briefcase, ChevronDown, ChevronUp, Home, LockIcon, LucideIcon, Search, Settings, User, Users, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from 'react'
 
 const SidebarT = () => {
-    const [showProjects, setProjects] = useState(true)
+    const [showProjects, setShowProjects] = useState(true)
     const [showPriorities, setPriorities] = useState(true)
 
     const dispatch = useAppDispatch();
@@ -63,6 +63,16 @@ const SidebarT = () => {
                 <SidebarLink icon={User} label="Users" href="/users" />
                 <SidebarLink icon={Users} label="Team" href="/teams" />
             </nav>
+
+            <button onClick={() => setShowProjects((prev) => !prev)} 
+                className="flex w-full items-center justify-between px-8 py-3 text-gray-500">
+                    <span className="">Projects</span>
+                    {showProjects ? (
+                        <ChevronUp className="h-5 w-5" />
+                    ) : (
+                        <ChevronDown className="h-5 w-5" />
+                    )}
+                </button>
         </div>
     </div>
     )
