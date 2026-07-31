@@ -84,3 +84,34 @@ export const createTask = async (
         }
     }
 };
+
+export const updateTaskStatus = async (
+    req: Request,
+    res: Response
+): Promise<void> => {
+    const { taskId } = req.params;
+    const { status } = req.body;
+
+    try {
+        const updatedTask = await prisma.task.update({
+            where: {
+                id: Number(taskId),
+            },
+            data: {
+                status: status,
+            },
+        });
+
+        res.json(updatedTask);
+    } catch (error) {
+        if (error instanceof Error) {
+            res.status(500).json({
+                message: `Error updating tasks: ${error.message}`,
+            });
+        } else {
+            res.status(500).json({
+                message: "Unknown error retrieving tasks",
+            });
+        }
+    }
+};
