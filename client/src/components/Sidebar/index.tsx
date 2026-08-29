@@ -9,7 +9,7 @@
     import { usePathname } from "next/navigation";
     import React, { useState } from 'react'
 
-    const SidebarT = () => {
+    const Sidebar = () => {
         const [showProjects, setShowProjects] = useState(true)
         const [showPriority, setShowPriority] = useState(true)
 
@@ -63,7 +63,7 @@
                     <SidebarLink icon={Search} label="Search" href="/search" />
                     <SidebarLink icon={Settings} label="Settings" href="/settings" />
                     <SidebarLink icon={User} label="Users" href="/users" />
-                    <SidebarLink icon={Users} label="Team" href="/teams" />
+                    <SidebarLink icon={Users} label="Teams" href="/teams" />
                 </nav>
 
 
@@ -162,4 +162,4 @@
         );
     };
 
-    export default SidebarT
+    export default Sidebar
